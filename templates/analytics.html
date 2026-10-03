@@ -1,3 +1,11 @@
+{% extends "layout.html" %}{% block title %}Analytics | AttendIQ{% endblock %}{% block heading %}Analytics{% endblock %}{% block sub %}Understand attendance patterns and student performance{% endblock %}{% block content %}
+Monthly Attendance
+Attendance percentage by month
 
-{% extends "layout.html" %}{% block title %}Analytics | AttendPredict{% endblock %}{% block heading %}Analytics{% endblock %}{% block sub %}Understand attendance patterns and student distribution{% endblock %}
-{% block content %}<div class="grid"><div class="panel"><h2>Monthly Attendance</h2><canvas id="monthly"></canvas></div><div class="panel"><h2>Student Distribution</h2><canvas id="distribution"></canvas></div></div><div class="panel"><h2>Student Performance</h2><div id="performance"></div></div><script>loadAnalyticsPage()</script>{% endblock %}
+Student Comparison
+Attendance percentage across students
+
+Performance summary
+Students grouped by attendance status
+
+{% endblock %}

@@ -1,0 +1,4 @@
+
+{% extends "layout.html" %}{% block title %}Attendance | AttendPredict{% endblock %}{% block heading %}Attendance Entry{% endblock %}{% block sub %}Add or update daily attendance{% endblock %}
+{% block content %}<div class="panel"><h2>Record Attendance</h2><form class="form-row" method="post"><select name="roll_no">{% for s in students %}<option>{{s.roll_no}}</option>{% endfor %}</select><input type="date" name="date" required><select name="status"><option value="P">Present</option><option value="A">Absent</option></select><button class="btn">Save Attendance</button></form></div>
+<div class="panel"><h2>How it works</h2><p class="muted">Saving the same student/date again updates the existing record. Predictions automatically use the updated history.</p></div>{% endblock %}

@@ -1,8 +1,18 @@
+AI
+AttendIQAttendance Intelligence
+MAIN MENU
+⌂ Dashboard ♙ Students {% if session.role=='admin' %}✓ Attendance{% endif %} ▥ Analytics □ Calendar {% if session.role=='admin' %}☆ Holidays{% endif %}
+{{ session.user[0]|upper }}
+{{session.user}}{{session.role|capitalize}}
+↪ Sign out
+☰
+ATTENDANCE PREDICTION SYSTEM
+{% block heading %}Dashboard{% endblock %}
+{% block sub %}Monitor attendance and predict future performance{% endblock %}
 
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{% block title %}AttendPredict{% endblock %}</title><link rel="stylesheet" href="/static/style.css"><script src="https://cdn.jsdelivr.net/npm/chart.js"></script></head>
-<body><div class="shell"><aside><div class="brand"><div class="logo">AP</div><div><b>AttendPredict</b><small>ML Attendance</small></div></div>
-<nav><a href="/dashboard">⌂ Dashboard</a><a href="/students">◉ Students</a>{% if session.role=='admin' %}<a href="/attendance">✓ Attendance</a>{% endif %}<a href="/analytics">◒ Analytics</a><a href="/calendar">□ Calendar</a>{% if session.role=='admin'%}<a href="/holidays">☆ Holidays</a>{% endif %}</nav>
-<div class="side-bottom"><span>{{session.role|upper}}</span><a href="/logout">↪ Logout</a></div></aside><main><header><div><h1>{% block heading %}Dashboard{% endblock %}</h1><p>{% block sub %}Attendance intelligence for your class{% endblock %}</p></div><a class="avatar" href="/logout">●</a></header>
-{% with messages=get_flashed_messages(with_categories=true) %}{% for cat,msg in messages %}<div class="alert {{cat}}">{{msg}}</div>{% endfor %}{% endwith %}{% block content %}{% endblock %}</main></div>
-<script src="/static/app.js"></script></body></html>
+● Live
+{{session.user[0]|upper}}
+{% with messages=get_flashed_messages(with_categories=true) %}{% for cat,msg in messages %}
+{{msg}}
+{% endfor %}{% endwith %} {% block content %}{% endblock %}
+AttendIQ • Attendance Prediction System • 2026

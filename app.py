@@ -1,4 +1,3 @@
-
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify, flash, send_file
 import sqlite3, os, io
 from pathlib import Path
@@ -349,7 +348,9 @@ def report():
         out.write(f'{r["roll_no"]},{r["name"]},{r["present"]},{r["absent"]},{r["total"]},{r["percentage"]},{pred},{ps}\n')
     return send_file(io.BytesIO(out.getvalue().encode()),mimetype="text/csv",
                      as_attachment=True,download_name="attendance_prediction_report.csv")
-init_db()
+
+setup()
+
 if __name__=="__main__":
     setup()
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=False)

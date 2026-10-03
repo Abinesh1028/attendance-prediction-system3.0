@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Attendance Prediction System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand"><div class="logo">AP</div><div><b>AttendPredict</b><small>Student Analytics</small></div></div>
+    <nav>
+      <button class="nav active" data-section="dashboard">⌂ <span>Dashboard</span></button>
+      <button class="nav" data-section="student">◉ <span>Student Prediction</span></button>
+      <button class="nav" data-section="class">▦ <span>Whole Class Prediction</span></button>
+      <button class="nav" data-section="analytics">◒ <span>Analytics</span></button>
+      <button class="nav" data-section="calendar">□ <span>Calendar</span></button>
+      <button class="nav" data-section="holidays">☆ <span>Holidays</span></button>
+    </nav>
+    <div class="side-note"><b>Dataset</b><span>July – September 2026</span><span>46 active students</span></div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div><h1 id="pageTitle">Attendance Dashboard</h1><p id="pageSub">Monitor attendance and predict future trends</p></div>
+      <div class="dataset-pill">● Live sample dataset</div>
+    </header>
+
+    <section id="dashboard" class="section active">
+      <div class="cards">
+        <div class="card"><span>Total Students</span><strong id="students">—</strong><small>Active students</small></div>
+        <div class="card"><span>Classes Conducted</span><strong id="classes">—</strong><small>Attendance dates</small></div>
+        <div class="card"><span>Present Count</span><strong id="present">—</strong><small>Recorded presents</small></div>
+        <div class="card"><span>Absent Count</span><strong id="absent">—</strong><small>Recorded absences</small></div>
+      </div>
+      <div class="grid two">
+        <div class="panel"><div class="panel-head"><div><h2>Attendance Trend</h2><p>Daily present vs absent count</p></div></div><canvas id="trendChart"></canvas></div>
+        <div class="panel"><div class="panel-head"><div><h2>Overall Attendance</h2><p>July to September 2026</p></div><div class="big-pct" id="overallPct">—%</div></div><div class="ring-wrap"><canvas id="overallChart"></canvas><div class="ring-label" id="ringLabel">—</div></div><div class="legend"><span><i class="dot p"></i>Present</span><span><i class="dot a"></i>Absent</span></div></div>
+      </div>
+      <div class="panel"><div class="panel-head"><div><h2>Monthly Summary</h2><p>Attendance performance by month</p></div></div><div id="monthlyTable"></div></div>
+    </section>
+
+    <section id="student" class="section">
+      <div class="section-title"><div><h2>Student Prediction</h2><p>Select a student to view history and predicted attendance.</p></div>
+        <select id="studentSelect" class="select"></select></div>
+      <div id="studentResult"></div>
+    </section>
+
+    <section id="class" class="section">
+      <div class="section-title"><div><h2>Whole Class Prediction</h2><p>Projected attendance based on historical and recent attendance patterns.</p></div>
+      <button class="primary" onclick="loadClassPrediction()">Refresh Prediction</button></div>
+      <div class="cards mini"><div class="card"><span>Predicted Good</span><strong id="goodCount">—</strong></div><div class="card"><span>Average</span><strong id="avgCount">—</strong></div><div class="card"><span>At Risk</span><strong id="riskCount">—</strong></div></div>
+      <div class="panel"><div id="classTable"></div></div>
+    </section>
+
+    <section id="analytics" class="section">
+      <div class="section-title"><div><h2>Analytics</h2><p>Visual analysis of attendance distribution.</p></div></div>
+      <div class="grid two"><div class="panel"><h2>Monthly Attendance</h2><canvas id="monthlyChart"></canvas></div><div class="panel"><h2>Student Attendance Distribution</h2><canvas id="distChart"></canvas></div></div>
+    </section>
+
+    <section id="calendar" class="section">
+      <div class="section-title"><div><h2>Attendance Calendar</h2><p>Daily class attendance from the sample dataset.</p></div></div>
+      <div class="panel"><div id="calendarGrid" class="calendar"></div></div>
+    </section>
+
+    <section id="holidays" class="section">
+      <div class="section-title"><div><h2>Holidays</h2><p>Holiday information can be maintained here for future predictions.</p></div></div>
+      <div class="holiday-grid">
+        <div class="holiday"><b>Independence Day</b><span>15 August 2026</span><small>National Holiday</small></div>
+        <div class="holiday"><b>Krishna Jayanthi</b><span>4 September 2026</span><small>Holiday</small></div>
+        <div class="holiday"><b>Local / College Holiday</b><span>Add date</span><small>Editable in dataset</small></div>
+      </div>
+      <div class="info">Prediction logic can exclude holidays and non-working days when future attendance dates are added.</div>
+    </section>
+  </main>
+</div>
+<script src="/static/app.js"></script>
+</body>
+</html>

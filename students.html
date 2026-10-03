@@ -1,0 +1,7 @@
+
+{% extends "layout.html" %}{% block title %}Students | AttendPredict{% endblock %}{% block heading %}Students{% endblock %}{% block sub %}Attendance performance and individual prediction{% endblock %}
+{% block content %}
+{% if session.role=='admin' %}<div class="panel"><h2>Add Student</h2><form class="form-row" action="/students/add" method="post"><input name="roll_no" placeholder="Roll number" required><input name="name" placeholder="Student name" required><input name="department" value="CSE" placeholder="Department"><input name="year" value="2nd Year"><input name="section" value="A"><button class="btn">Add</button></form></div>{% endif %}
+<div class="panel"><div class="toolbar"><input id="search" placeholder="Search roll number or name..."></div><div id="studentTable"></div></div>
+<div class="panel" id="detail" style="display:none"></div><script>loadStudentsPage()</script>
+{% endblock %}

@@ -1,7 +1,21 @@
+{% extends "layout.html" %}{% block title %}Students | AttendIQ{% endblock %}{% block heading %}Students{% endblock %}{% block sub %}Monitor individual attendance and prediction status{% endblock %}{% block content %}
+âŒ•
+Search by roll number or name...
+{% if session.role=='admin' %}+ Add Student{% endif %}
+Student Attendance
+Loading students...
 
-{% extends "layout.html" %}{% block title %}Students | AttendPredict{% endblock %}{% block heading %}Students{% endblock %}{% block sub %}Attendance performance and individual prediction{% endblock %}
-{% block content %}
-{% if session.role=='admin' %}<div class="panel"><h2>Add Student</h2><form class="form-row" action="/students/add" method="post"><input name="roll_no" placeholder="Roll number" required><input name="name" placeholder="Student name" required><input name="department" value="CSE" placeholder="Department"><input name="year" value="2nd Year"><input name="section" value="A"><button class="btn">Add</button></form></div>{% endif %}
-<div class="panel"><div class="toolbar"><input id="search" placeholder="Search roll number or name..."></div><div id="studentTable"></div></div>
-<div class="panel" id="detail" style="display:none"></div><script>loadStudentsPage()</script>
-{% endblock %}
+Student	Attendance	Present	Absent	Prediction	Status
+{% if session.role=='admin' %}
+Ã—
+Add student
+Roll Number
+Name
+Department
+CSE
+Year
+2nd Year
+Section
+A
+Add Student
+{% endif %} {% endblock %}

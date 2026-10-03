@@ -1,9 +1,35 @@
+{% extends "layout.html" %}{% block title %}Dashboard | AttendIQ{% endblock %} {% block content %}
+OVERVIEW
+Good to see you, {{session.user|capitalize}} ðŸ‘‹
+Here is today's attendance intelligence at a glance.
 
-{% extends "layout.html" %}{% block title %}Dashboard | AttendPredict{% endblock %}
-{% block content %}
-<div class="cards"><div class="stat"><small>Total Students</small><b id="students">—</b><span>Active records</span></div><div class="stat"><small>Classes Conducted</small><b id="classes">—</b><span>Unique dates</span></div><div class="stat"><small>Present</small><b id="present">—</b><span>Attendance records</span></div><div class="stat"><small>Absent</small><b id="absent">—</b><span>Attendance records</span></div></div>
-<div class="grid"><div class="panel"><div class="panel-head"><div><h2>Attendance Trend</h2><p>Daily attendance across the sample period</p></div></div><canvas id="trend"></canvas></div><div class="panel"><div class="panel-head"><div><h2>Overall Attendance</h2><p>Current class percentage</p></div><b class="pct" id="pct">—%</b></div><div class="donut"><canvas id="donut"></canvas><strong id="donutText">—</strong></div></div></div>
-<div class="grid"><div class="panel"><div class="panel-head"><div><h2>Class Prediction</h2><p>Current vs projected attendance</p></div><button class="btn" onclick="loadClass()">Refresh</button></div><div id="classTable"></div></div>
-{% if session.role=='admin' %}<div class="panel"><h2>Import Attendance</h2><p class="muted">Upload an Excel file containing Date, Roll_No and Status.</p><form action="/import" method="post" enctype="multipart/form-data"><input type="file" name="file" accept=".xlsx,.xls" required><button class="btn">Import Excel</button></form><a class="link" href="/report.csv">Download prediction report CSV →</a></div>{% endif %}</div>
-<script>loadDashboard();loadClass();</script>
+â†“ Download Report
+â™™
+Total Studentsâ€”Active students
+â–£
+Classes Conductedâ€”Unique attendance dates
+âœ“
+Presentâ€”Attendance records
+!
+Absentâ€”Attendance records
+Attendance Trend
+Daily present vs absent records
+
+Jul â€“ Sep 2026
+Overall Attendance
+Class attendance percentage
+
+â€”Attendance
+Calculating...
+Class Prediction
+Current attendance compared with predicted attendance
+
+â†» Refresh
+{% if session.role=='admin' %}
+â†‘
+Import attendance data
+Upload an Excel file with Date, Roll_No and Status columns to update the dashboard.
+
+No file chosenImport Excel â†’
+{% endif %}
 {% endblock %}

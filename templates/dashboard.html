@@ -1,35 +1,114 @@
-{% extends "layout.html" %}{% block title %}Dashboard | AttendIQ{% endblock %} {% block content %}
-OVERVIEW
-Good to see you, {{session.user|capitalize}} ðŸ‘‹
-Here is today's attendance intelligence at a glance.
+{% extends "layout.html" %}
 
-â†“ Download Report
-â™™
-Total Studentsâ€”Active students
-â–£
-Classes Conductedâ€”Unique attendance dates
-âœ“
-Presentâ€”Attendance records
-!
-Absentâ€”Attendance records
-Attendance Trend
-Daily present vs absent records
+{% block content %}
 
-Jul â€“ Sep 2026
-Overall Attendance
-Class attendance percentage
+<div class="container">
 
-â€”Attendance
-Calculating...
-Class Prediction
-Current attendance compared with predicted attendance
+    <h1>Attendance Dashboard</h1>
+    <p>Monitor attendance and predict future performance.</p>
 
-â†» Refresh
-{% if session.role=='admin' %}
-â†‘
-Import attendance data
-Upload an Excel file with Date, Roll_No and Status columns to update the dashboard.
+    <div class="cards">
 
-No file chosenImport Excel â†’
-{% endif %}
+        <div class="card">
+            <h3>Total Students</h3>
+            <h2>{{ total_students }}</h2>
+            <p>Active students</p>
+        </div>
+
+        <div class="card">
+            <h3>Classes Conducted</h3>
+            <h2>{{ total_classes }}</h2>
+            <p>Attendance dates</p>
+        </div>
+
+        <div class="card">
+            <h3>Present</h3>
+            <h2>{{ total_present }}</h2>
+            <p>Present records</p>
+        </div>
+
+        <div class="card">
+            <h3>Absent</h3>
+            <h2>{{ total_absent }}</h2>
+            <p>Absent records</p>
+        </div>
+
+    </div>
+
+    <div class="chart-box">
+        <h2>Attendance Trend</h2>
+        <p>Daily present and absent records</p>
+
+        <canvas id="attendanceChart"></canvas>
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Overall Attendance</h3>
+            <h2>{{ overall_attendance }}%</h2>
+            <p>Class attendance percentage</p>
+        </div>
+
+        <div class="card">
+            <h3>Class Prediction</h3>
+            <h2>{{ prediction }}%</h2>
+            <p>Predicted attendance</p>
+        </div>
+
+    </div>
+
+    <div class="table-box">
+
+        <h2>Student Attendance Prediction</h2>
+
+        {% if predictions %}
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Roll No</th>
+                    <th>Student Name</th>
+                    <th>Attendance</th>
+                    <th>Prediction</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+            {% for student in predictions %}
+
+                <tr>
+                    <td>{{ student.roll_no }}</td>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.attendance }}%</td>
+                    <td>{{ student.prediction }}%</td>
+
+                    <td>
+                        {% if student.status == "GOOD" %}
+                            <span class="good">GOOD</span>
+                        {% elif student.status == "AVERAGE" %}
+                            <span class="average">AVERAGE</span>
+                        {% else %}
+                            <span class="risk">RISK</span>
+                        {% endif %}
+                    </td>
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+        </table>
+
+        {% else %}
+
+        <p>No prediction data available.</p>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
 {% endblock %}
